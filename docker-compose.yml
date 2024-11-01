@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  jenkins:
+    build: .
+    container_name: jenkins-server
+    ports:
+      - "8080:8080"  # Porta web do Jenkins
+      - "50000:50000" # Porta do Jenkins para agentes
+    volumes:
+      - jenkins_home:/var/jenkins_home  # Persistência dos dados do Jenkins
+      - /var/run/docker.sock:/var/run/docker.sock  # Permite que o Jenkins acesse o Docker host
+
+volumes:
+  jenkins_home:
